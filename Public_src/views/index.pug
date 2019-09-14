@@ -122,44 +122,43 @@ block content
       .row
         .col-md-12.col-lg-8
           h4.p-title
-            b RECENT NEWS
+            b 2019 CONFERENCE VIDEOS
           .row
             .col-sm-6
-              img(src='images/recent-news-1-600x450.jpg' alt='')
-              h4.pt-20
-                a(href='#')
-                  b
-                    | 2017 Market Performance: 
-                    br
-                    | Crypto vs.Stock
-              ul.list-li-mr-20.pt-10.pb-20
-                li.color-lite-black
-                  | by 
-                  a.color-black(href='#')
-                    b Olivia Capzallo,
-                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Jan 25, 2018
-                li
-                  i.color-primary.mr-5.font-12.ion-ios-bolt
-                  b 30,190
-                li
-                  i.color-primary.mr-5.font-12.ion-chatbubbles
-                  b 47
-              p
-                | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                | doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
+              .row
+              each video in conferenceVideos.slice(0, -(conferenceVideos.length - 3))
+                img(src=`${video.thumbnail}` alt='')
+                h4.pt-20
+                  a(href='#')
+                    b=video.name
+                ul.list-li-mr-20.pt-10.pb-20
+                  li
+                    b=video.author
+                  li
+                    i.color-primary.mr-5.font-12.ion-ios-time
+                    b=video.duration
+                  li.color-lite-black
+                    span.color-black Aug 13, 2019
+                //- p=video.description
 
             .col-sm-6
-              a.oflow-hidden.pos-relative.mb-20.dplay-block(href='#')
-                .wh-100x.abs-tlr
-                  img(src='images/polular-1-100x100.jpg' alt='')
-                .ml-120.min-h-100x
-                  h5
-                    b Bitcoin Billionares Hidding in Plain Sight
-                  h6.color-lite-black.pt-10
-                    | by 
-                    span.color-black
-                      b Danile Palmer,
-                    |  Jan 25, 2018
+              each video in conferenceVideos.slice(3)
+                a.oflow-hidden.pos-relative.mb-20.dplay-block(href='#')
+                  .wh-100x.abs-tlr
+                    img(src=`${video.thumbnail}`, alt='')
+                  .ml-120.min-h-100x
+                    h5
+                      b=video.name
+                    h6.color-lite-black.pt-5
+                      | by 
+                      span.color-black
+                        b=video.author
+                    h6.color-lite-black.pt-5
+                      span.color-black
+                        | &nbsp;
+                        i.color-primary.mr-5.font-12.ion-ios-time
+                        b=video.duration
+                      span &nbsp;- Aug 13, 2019
 
           //- h4.p-title.mt-30
           //-   b CRYPTO MINING NEWS

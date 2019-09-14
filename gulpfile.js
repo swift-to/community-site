@@ -12,11 +12,29 @@ const pug = require('gulp-pug');
 const fs = require('fs');
 const yaml = require('yaml');
 
+const Vimeo = require('./tasks/vimeo');
+const swiftTOConf2019Album = 6225806;
+
 const sourceRoot = './Public_src/';
 const publicRoot = './Public/';
 
 const siteConfigFile = fs.readFileSync('./site-config.yml', 'utf8')
 const siteConfig = yaml.parse(siteConfigFile)
+
+gulp.task('fetchVimeoVideos', () => {
+
+	if (siteConfig.conferenceVideos != undefined) {
+		console.log("vimeo videos already fetched");
+		return
+	}
+
+	const vimeo = new Vimeo();
+	return vimeo.getWebsiteVideoDataFromAlbum(swiftTOConf2019Album)
+		.then((videos) => {
+			siteConfig.conferenceVideos = videos
+			console.log(videos);
+		});
+});
 
 gulp.task('copyFonts', () => {
 	return gulp.src(sourceRoot + 'fonts/**/**')
@@ -43,7 +61,7 @@ gulp.task('copyJSLibs', () => {
 		.pipe(gulp.dest(publicRoot + 'js'))
 });
 
-gulp.task('html', () => {
+gulp.task('html', ['fetchVimeoVideos'], () => {
 	return gulp.src(sourceRoot + '/views/**.pug')
 		.pipe(plumber())
 		.pipe(pug({
