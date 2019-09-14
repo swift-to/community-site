@@ -1,1 +1,0 @@
-Charles has spent the last ten years focused on iOS development at companies including Kobo, theScore, and most recently at Scotiabank. As Technical Lead for the iOS team building the bank’s new flagship app, he spends his days focused on app architecture and Swift best practices. The two letters missing from his Twitter username continue to haunt him to this day.

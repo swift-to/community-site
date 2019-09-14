@@ -1,9 +1,0 @@
-Lyle has over 30 years experience as a software developer and team lead. He has been developing iOS and Android software for the last 8 years.
-Lyle thinks code quality is extremely important, as it is integral to the ability of a team to make future changes to an app. 
-Experience has shown him that patterns created at the beginning of a project, whether good or bad, tend to be repeated for the lifetime of the app. 
-For this reason, he prefers to use a solid architecture right from the start.
-
-Over the last 5 years he has extensively studied and implemented mobile apps using architectures like MVVM, BLOC, MVP, and VIPER. 
-His experience shows him that using a comprehensive architecture is the best way to develop an App that its bug free, testable and extensible.
-
-When he's not thinking about mobile architecture, you will find him cycling, windsurfing or skiing.

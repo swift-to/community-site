@@ -1,3 +1,0 @@
-Leo Dion runs BrightDigit, a company in Lansing, Michigan which specializes in software development in the Apple space: iOS, macOS, and watchOS as well as marketing integration.
-He has almost 10 years of experience developing in iOS and has been developing in and blogging about Swift since day 1. 
-He lives in Lansing MI with his wife Betsy and 5 kids and currently run two podcasts: empowerapps.show on Apple stuff and businesses, and okproductive.com a productivity podcast for non-perfectionists.

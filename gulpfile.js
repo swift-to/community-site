@@ -9,9 +9,14 @@ const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
 const pug = require('gulp-pug');
+const fs = require('fs');
+const yaml = require('yaml');
 
 const sourceRoot = './Public_src/';
 const publicRoot = './Public/';
+
+const siteConfigFile = fs.readFileSync('./site-config.yml', 'utf8')
+const siteConfig = yaml.parse(siteConfigFile)
 
 gulp.task('copyFonts', () => {
 	return gulp.src(sourceRoot + 'fonts/**/**')
@@ -23,6 +28,16 @@ gulp.task('copyImages', () => {
 		.pipe(gulp.dest(publicRoot + 'images'))
 });
 
+gulp.task('copyCommon', () => {
+	return gulp.src(sourceRoot + 'common/**/**')
+		.pipe(gulp.dest(publicRoot + 'common'))
+});
+
+gulp.task('copyPluginFrameworks', () => {
+	return gulp.src(sourceRoot + 'plugin-frameworks/**/**')
+		.pipe(gulp.dest(publicRoot + 'plugin-frameworks'))
+});
+
 gulp.task('copyJSLibs', () => {
 	return gulp.src([sourceRoot + 'js/**.js', '!' + sourceRoot + 'js/main.js'])
 		.pipe(gulp.dest(publicRoot + 'js'))
@@ -31,7 +46,9 @@ gulp.task('copyJSLibs', () => {
 gulp.task('html', () => {
 	return gulp.src(sourceRoot + '/views/**.pug')
 		.pipe(plumber())
-		.pipe(pug())
+		.pipe(pug({
+			data: siteConfig
+		}))
 		.pipe(gulp.dest(publicRoot))
 });
 
@@ -71,12 +88,12 @@ gulp.task('bs', () => {
 });
 
 gulp.task('default', ['bs', 'build'], () => {
-	gulp.watch(sourceRoot + 'views/**.pug',['html']);
-	gulp.watch(sourceRoot + 'js/**/*.js',['js']);
-	gulp.watch(sourceRoot + 'scss/**/*.scss',['styles']);
-
-	gulp.watch(publicRoot + 'css/style.css',reload);
-	gulp.watch(publicRoot + '*.html',reload);
+	gulp.watch(sourceRoot + 'views/**.pug', ['html']);
+	gulp.watch(sourceRoot + 'js/**/*.js', ['js']);
+	gulp.watch(sourceRoot + 'scss/**/*.scss', ['styles']);
+	gulp.watch(publicRoot + 'css/style.css', reload);
+	gulp.watch(publicRoot + '*.html', reload);
 });
 
-gulp.task('build', ['html', 'js', 'styles', 'copyFonts', 'copyImages', 'copyJSLibs']);
+gulp.task('copyStatic', ['copyFonts', 'copyImages', 'copyCommon', 'copyPluginFrameworks', 'copyJSLibs']);
+gulp.task('build', ['html', 'js', 'styles', 'copyStatic']);

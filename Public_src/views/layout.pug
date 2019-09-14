@@ -1,126 +1,122 @@
-- var title = "Swift TO";
-- var description = "A conference celebrating Swift in Downtown Toronto";
-- var date = "Tues, August 13th, 2019"
-- var venueName = "TELUS Harbour"
-- var venueUrl = "https://www.google.com/maps/place/Telus+Tower,+25+York+St,+Toronto,+ON+M5J+2V5,+Canada/@43.6434855,-79.3831493,17z/data=!3m1!4b1!4m5!3m4!1s0x882b34d4ba18f455:0x39c2a7b0c3eaee6a!8m2!3d43.6434855!4d-79.3809606"
-- var rfpUrl = "https://www.papercall.io/swift-to" 
-
-- var keywords = ["conference", "swift", "ios", "macos", "watchos", "linux", "server-side", "apple"].join(",")
-
-- var twitter1 = "SwiftConfTO"
-- var twitter2 = "NSCoderTO"
-- var email = "hello@swiftconf.to"
-- var companyName = "NSCoderTO and Swift TO Inc., a non-profit corporation"
-
-// Expectations
-- var expectation1 = {title: "Great Talks", description: "A day filled with talks about all things Swift programming. Beyond just iOS and Mac development, this conference is about celebrating the language and its many uses."};
-- var expectation2 = {title: "Networking", description: "Meet other passionate developers programming with Swift in your community. An after-conference event will be organized to celebrate and network."};
-- var expectation3 = {title: "Knowledge you can share", description: "All content at Swift TO will be recorded and distributed online so anything you learn can easily be shared with your broader team after the event."};
-- var expectation4 = {title: "Quality", description: "We're here to celebrate the great passion and talent for Swift development in this city. SwiftTO wants to showcase great work and ideas from in and around our community."};
-- var expectation5 = {title: "Convenience", description: "Travelling for conferences may not fit all schedules. SwiftTO is a jam-packed day of content close to home."};
-- var expectation6 = {title: "Affordability", description: "Conference ticket prices don't always fit our budgets. SwiftTO is a price-conscious conference and is welcome to all experience levels."};
-- var expectations = [expectation1, expectation2, expectation3, expectation4, expectation5, expectation6];
-// Speakers
-- var speaker1 = {name: "Paul Hudson", slug: "paul-hudson", twitter: "twostraws"};
-- var speaker2 = {name: "Chris Ching", slug: "chris-ching", twitter: "CodeWithChris"};
-- var speaker3 = {name: "Abbey Jackson", slug: "abbey-jackson", twitter: "earthabbey"};
-- var speaker4 = {name: "Tim Mitra", slug: "tim-mitra", twitter: "timmitra"};
-- var speaker5 = {name: "Veronica Ray", slug: "veronica-ray", twitter: "nerdonica"};
-- var speaker6 = {name: "Marwan Alani", slug: "marwan-alani", twitter: "marwanalany"};
-- var speaker7 = {name: "Frank Courville", slug: "frank-courville", twitter: "frankacy"};
-- var speaker8 = {name: "Leo Dion", slug: "leo-dion", twitter: "leogdion"};
-- var speaker9 = {name: "Lyle Resnick", slug: "lyle-resnick"};
-- var speaker10 = {name: "Rohan Trivedi", slug: "rohan-trivedi"};
-- var speaker11 = {name: "Charles Joseph", slug: "charles-joseph", twitter: "lessthanuthink"};
-- var speakers = [speaker1, speaker2, speaker3, speaker4, speaker5, speaker6, speaker7, speaker8, speaker9, speaker10, speaker11];
-
 doctype html
-html(lang="en")
-  head
-    title=title
-    meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
-    meta(name="description", content=description)
-    meta(name="keywords", content=keywords)
-    link(href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Raleway", rel="stylesheet")
-    link(rel="stylesheet", href="css/bootstrap.css")
-    link(rel="stylesheet", href="css/animate.css")
-    link(rel="stylesheet", href="fonts/ionicons/css/ionicons.min.css")
-    link(rel="stylesheet", href="fonts/fontawesome/css/font-awesome.min.css")
-    // Twitter card
-    meta(name="twitter:card", content="summary")
-    meta(name="twitter:site", content="@" + twitter1)
-    meta(name="twitter:title", content=title)
-    meta(name="twitter:description", content=description)
-    meta(name='twitter:image', content='https://swiftconf.to/images/SwiftTO-Logo.png')
-    //Open Graph
-    meta(property="og:title", content=title)
-    meta(property="og:image", content="https://swiftconf.to/images/SwiftTO-Logo.png")
-    meta(property="og:description", content=description)
-    meta(property="og:url", content="https://swiftconf.to")
+head
+  title=title
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  meta(charset='UTF-8')
+  // Font
+  link(href='https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:400,600,700' rel='stylesheet')
+  // Stylesheets
+  link(href='plugin-frameworks/bootstrap.css' rel='stylesheet')
+  link(href='fonts/ionicons.css' rel='stylesheet')
+  link(href='common/styles.css' rel='stylesheet')
+header
+  //- .bg-191
+  //-   .container
+  //-     .oflow-hidden.color-ash.font-9.text-sm-center.ptb-sm-5
+  //-       ul.float-left.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-10
+  //-         li
+  //-           a.pl-0.pl-sm-10(href='#') About
+  //-         li
+  //-           a(href='#') Advertise
+  //-         li
+  //-           a(href='#') Submit Press Release
+  //-         li
+  //-           a(href='#') Contact
+  //-       ul.float-right.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-5
+  //-         li
+  //-           a.pl-0.pl-sm-10(href='#')
+  //-             i.ion-social-facebook
+  //-         li
+  //-           a(href='#')
+  //-             i.ion-social-twitter
+  //-         li
+  //-           a(href='#')
+  //-             i.ion-social-google
+  //-         li
+  //-           a(href='#')
+  //-             i.ion-social-instagram
+  //-         li
+  //-           a(href='#')
+  //-             i.ion-social-bitcoin
+  .container
+    a.logo(href='index.html')
+      img(src='images/swiftTOtall.png' alt='Logo')
+    //- a.right-area.src-btn(href='#')
+    //-   i.active.src-icn.ion-search
+    //-   i.close-icn.ion-close
+    //- .src-form
+    //-   form
+    //-     input(type='text' placeholder='Search here')
+    //-     button(type='submit')
+    //-       i.ion-search
+    //- a.menu-nav-icon(data-menu='#main-menu' href='#')
+    //-   i.ion-navicon
+    //- ul#main-menu.main-menu
+    //-   li
+    //-     a(href='02_archive-page.html') NEWS
+    //-   li.drop-down
+    //-     a(href='03_single-post.html')
+    //-       | GUIDES &amp; ANALYTICS
+    //-       i.ion-arrow-down-b
+    //-     ul.drop-down-menu.drop-down-inner
+    //-       li
+    //-         a(href='#') PAGE 1
+    //-       li
+    //-         a(href='#') PAGE 2
+    //-   li
+    //-     a(href='04_FAQS.html') EVENTS
+    //-   li
+    //-     a(href='05_FAQS-single.html') EXPLAINED
+    //-   li
+    //-     a(href='06_contact-us.html') ICON CLAENDER
+    .clearfix
 
+block content
 
-    // Theme Style
-    link(rel="stylesheet", href="css/style.css")
+footer.bg-191.color-ccc
+  .container
+    .pt-50.pb-20.pos-relative
+      //- .abs-tblr.pt-50.z--1.text-center
+      //-   .h-80.pos-relative
+      //-     img.opacty-1.h-100.w-auto(src='images/map.png' alt='')
+      .row
+        .col-sm-4
+          .mb-30
+            //- a(href='#V')
+            //-   img(src='images/logo-white.png')
+            p.mtb-20.color-ccc
+              | Swift TO is a non-profit dedicated to being at the forefront of Swift community development in Toronto
+            p.color-ash
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved | This template is made with 
+              i.ion-heart(aria-hidden='true')
+              |  by 
+              a(href='https://colorlib.com' target='_blank') Colorlib
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 
-  body
-    header(role="banner")
-      nav#nav-app.navbar.navbar-expand-md.navbar-dark.bg-light
-        .container
-          a.navbar-brand(href='index.html')=title
-          a.navbar-brand.small(href='index.html')=title
-          button.navbar-toggler(type='button')
-            span.navbar-toggler-icon
-          div.navbar-collapse.navbar-light.collapse
-            ul.navbar-nav.ml-auto.pl-lg-5.pl-0
-              li.nav-item
-                a.nav-link(href='/#tickets') Tickets
-              li.nav-item
-                a.nav-link(href='/speakers.html') Speakers 
-              li.nav-item
-                a.nav-link(href='/#schedule') Schedule 
-              li.nav-item
-                a.nav-link(href='/diversity-and-inclusion.html') Diversity &amp; Inclusion
-
-    div#app
-      block content
-
-    footer.site-footer
-      .container
-        .row.mb-5
-          .col-md-4.mb-2
-            h3.mb-4 About
-            p.mb-4
-              | #{description}
-          .col-md-4.mb-2
-            h3.mb-4 Links
-            ul.list-unstyled
-              li
-                a(href='/') Home
-              li
-                a(href='/#tickets') Tickets
-              li
-                a(href='/speakers.html') Speakers
-              li
-                a(href='/diversity-and-inclusion.html') Diversity &amp; Inclusion
-              li
-                a(target='_blank', href=rfpUrl) Submit a talk proposal
-          .col-md-4.mb-2
-            h3.mb-4 Contact
-            p
-              a(target='_blank', href='https://twitter.com/' + twitter1)
-                span.fa.fa-twitter
-                | &nbsp;
-                span=twitter1
-            p
-              a(target='_blank', href='https://twitter.com/' + twitter2)
-                span.fa.fa-twitter
-                | &nbsp;
-                span=twitter2
-            p
-              a(target='_blank', href='mailto:' + email)
-                span=email
-            p
-              span Organized by #{companyName}
-
-    script(src='js/main.js')
+    .brdr-ash-1.opacty-2
+    .oflow-hidden.color-ash.font-9.text-sm-center.ptb-sm-5
+      //- ul.float-left.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-10
+      //-   li
+      //-     a.pl-0.pl-sm-10(href='#') Terms &amp; Conditions
+      //-   li
+      //-     a(href='#') Privacy policy
+      //-   li
+      //-     a(href='#') Jobs advertising
+      //-   li
+      //-     a(href='#') Contact us
+      ul.float-right.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-5
+        li
+          a(href='https://twitter.com/' + twitter)
+            i.ion-social-twitter
+    // oflow-hidden
+  // container
+// SCIPTS
+script(src='plugin-frameworks/jquery-3.2.1.min.js')
+script(src='plugin-frameworks/tether.min.js')
+script(src='plugin-frameworks/bootstrap.js')
+script(src='common/scripts.js')

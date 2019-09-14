@@ -1,4 +1,0 @@
-Marwan is a full-time problem-solver and an equality advocate! 
-He spent a big chunk of his coding days doing full-stack web development until he decided to make the jump to the fascinating world of iOS when Swift came out!
-Marwan currently works as a Senior iOS Engineer at Symantec in the mornings, and also teaching full-stack JS development in the evenings.
-Whatever time he has left is usually spent on Jazz, Performing Arts, Basketball, family, friends, and random attempts to make the world a better place.
