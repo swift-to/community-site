@@ -67,6 +67,7 @@ gulp.task('copyJSLibs', () => {
 
 const writeVideosPages = () => {
 	if (!fs.existsSync(publicRoot)) {
+		console.log("creating video folder");
 		fs.mkdirSync(publicRoot + 'video');
 	}
 	let allVideos = siteConfig.conferenceVideos.concat(siteConfig.communityVideos);
