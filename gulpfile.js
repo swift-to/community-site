@@ -69,6 +69,8 @@ const writeVideosPages = () => {
 	if (!fs.existsSync(publicRoot)) {
 		console.log("creating video folder");
 		fs.mkdirSync(publicRoot + 'video');
+	} else {
+		console.log("video folder exists");
 	}
 	let allVideos = siteConfig.conferenceVideos.concat(siteConfig.communityVideos);
 	allVideos.forEach((video) => {
