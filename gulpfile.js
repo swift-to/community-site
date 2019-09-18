@@ -34,11 +34,9 @@ gulp.task('fetchVimeoVideos', () => {
 	return vimeo.getWebsiteVideoDataFromAlbum(swiftTOConf2019Album)
 		.then((videos) => {
 			siteConfig.conferenceVideos = videos
-			console.log(videos);
 			return vimeo.getWebsiteVideoDataFromAlbum(communityContentAlbum);
 		}).then((videos) => {
 			siteConfig.communityVideos = videos
-			console.log(videos);
 		});
 });
 
