@@ -19,6 +19,7 @@ const communityContentAlbum = 6288370;
 
 const sourceRoot = './Public_src/';
 const publicRoot = './Public/';
+const videoFolder = publicRoot + 'video/';
 
 const siteConfigFile = fs.readFileSync('./site-config.yml', 'utf8')
 const siteConfig = yaml.parse(siteConfigFile)
@@ -66,16 +67,17 @@ gulp.task('copyJSLibs', () => {
 });
 
 const writeVideosPages = () => {
-	if (!fs.existsSync(publicRoot)) {
+	if (!fs.existsSync(videoFolder)) {
 		console.log("creating video folder");
-		fs.mkdirSync(publicRoot + 'video');
+		fs.mkdirSync(videoFolder);
 	} else {
 		console.log("video folder exists");
 	}
 	let allVideos = siteConfig.conferenceVideos.concat(siteConfig.communityVideos);
 	allVideos.forEach((video) => {
-		let html = pug.renderFile(`${sourceRoot}views/_video.pug`, video);
-		fs.writeFileSync(`${publicRoot}video/${video.id}.html`, html);
+		const html = pug.renderFile(`${sourceRoot}views/_video.pug`, video);
+		const filename = `${videoFolder}${video.id}.html`
+		fs.writeFileSync(filename, html);
 	});
 	fs.writeFileSync(`${publicRoot}videoCache.json`, JSON.stringify(allVideos, null, 2));
 };
