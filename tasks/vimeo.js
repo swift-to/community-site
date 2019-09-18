@@ -2,13 +2,16 @@ const axios = require('axios');
 require('dotenv').config()
 
 const authorization = Buffer.from(`${process.env.VIMEO_CLIENT_ID}:${process.env.VIMEO_CLIENT_SECRET}`).toString('base64');
+const accessToken = process.env.VIMEO_ACCESS_TOKEN
+
+const authHeaders = {'Authorization': `Bearer ${accessToken}`}
 
 class Vimeo {
 
     getAlbums() {
         return axios.request({
             method: 'get',
-            headers: {'Authorization': `Basic ${authorization}`},
+            headers: authHeaders,
             url: 'https://api.vimeo.com/users/101960035/albums'
           })
           .then((response) => {
@@ -20,7 +23,7 @@ class Vimeo {
     getAlbumVideos(albumId) {
         return axios.request({
             method: 'get',
-            headers: {'Authorization': `Basic ${authorization}`},
+            headers: authHeaders,
             url: `https://api.vimeo.com/users/101960035/albums/${albumId}/videos?sort=manual`
           })
           .then((response) => {
@@ -35,7 +38,10 @@ class Vimeo {
             let videoData = videos.map(v => { 
                 const image = v.pictures.sizes.filter(size => size.width >= 640)[0]
                 const titleParts = v.name.split("-");
+                const idParts = v.uri.split("/")
+                const id = idParts[idParts.length - 1]
                 return {
+                    id: id,
                     name: titleParts[0].trim(),
                     author: titleParts[1].trim(),
                     description: v.description,

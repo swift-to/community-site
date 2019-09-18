@@ -8,12 +8,14 @@ const reload = browserSync.reload;
 const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
-const pug = require('gulp-pug');
+const pug = require('pug');
+const gulpPug = require('gulp-pug');
 const fs = require('fs');
 const yaml = require('yaml');
 
 const Vimeo = require('./tasks/vimeo');
 const swiftTOConf2019Album = 6225806;
+const communityContentAlbum = 6288370;
 
 const sourceRoot = './Public_src/';
 const publicRoot = './Public/';
@@ -32,6 +34,10 @@ gulp.task('fetchVimeoVideos', () => {
 	return vimeo.getWebsiteVideoDataFromAlbum(swiftTOConf2019Album)
 		.then((videos) => {
 			siteConfig.conferenceVideos = videos
+			console.log(videos);
+			return vimeo.getWebsiteVideoDataFromAlbum(communityContentAlbum);
+		}).then((videos) => {
+			siteConfig.communityVideos = videos
 			console.log(videos);
 		});
 });
@@ -61,10 +67,23 @@ gulp.task('copyJSLibs', () => {
 		.pipe(gulp.dest(publicRoot + 'js'))
 });
 
+const writeVideosPages = () => {
+	if (!fs.existsSync(publicRoot)) {
+		fs.mkdirSync(publicRoot + 'video');
+	}
+	let allVideos = siteConfig.conferenceVideos.concat(siteConfig.communityVideos);
+	allVideos.forEach((video) => {
+		let html = pug.renderFile(`${sourceRoot}views/_video.pug`, video);
+		fs.writeFileSync(`${publicRoot}video/${video.id}.html`, html);
+	});
+	fs.writeFileSync(`${publicRoot}videoCache.json`, JSON.stringify(allVideos, null, 2));
+};
+
 gulp.task('html', ['fetchVimeoVideos'], () => {
+	writeVideosPages();
 	return gulp.src(sourceRoot + '/views/**.pug')
 		.pipe(plumber())
-		.pipe(pug({
+		.pipe(gulpPug({
 			data: siteConfig
 		}))
 		.pipe(gulp.dest(publicRoot))

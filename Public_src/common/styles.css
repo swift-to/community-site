@@ -540,7 +540,7 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 /* INDIVIDUAL STYLING */
 
-section{ padding: 40px 0; }
+section{ margin: 40px 0; }
 
 .p-title{ position: relative; padding-bottom: 20px; margin-bottom: 40px; }
 
