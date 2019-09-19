@@ -24,6 +24,9 @@ const videoFolder = publicRoot + 'video/';
 const siteConfigFile = fs.readFileSync('./site-config.yml', 'utf8')
 const siteConfig = yaml.parse(siteConfigFile)
 
+const headlinesFile = fs.readFileSync('./data/headlines.yml', 'utf8')
+siteConfig.headlines = yaml.parse(headlinesFile)
+
 gulp.task('fetchVimeoVideos', () => {
 
 	if (siteConfig.conferenceVideos != undefined) {

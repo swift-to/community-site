@@ -50,26 +50,22 @@ header
     //-     input(type='text' placeholder='Search here')
     //-     button(type='submit')
     //-       i.ion-search
-    //- a.menu-nav-icon(data-menu='#main-menu' href='#')
-    //-   i.ion-navicon
-    //- ul#main-menu.main-menu
-    //-   li
-    //-     a(href='02_archive-page.html') NEWS
-    //-   li.drop-down
-    //-     a(href='03_single-post.html')
-    //-       | GUIDES &amp; ANALYTICS
-    //-       i.ion-arrow-down-b
-    //-     ul.drop-down-menu.drop-down-inner
-    //-       li
-    //-         a(href='#') PAGE 1
-    //-       li
-    //-         a(href='#') PAGE 2
-    //-   li
-    //-     a(href='04_FAQS.html') EVENTS
-    //-   li
-    //-     a(href='05_FAQS-single.html') EXPLAINED
-    //-   li
-    //-     a(href='06_contact-us.html') ICON CLAENDER
+    a.menu-nav-icon(data-menu='#main-menu' href='#')
+      i.ion-navicon
+    ul#main-menu.main-menu
+      //- li
+      //-   a(href='02_archive-page.html') NEWS
+      //- li.drop-down
+      //-   a(href='03_single-post.html')
+      //-     | GUIDES &amp; ANALYTICS
+      //-     i.ion-arrow-down-b
+      //-   ul.drop-down-menu.drop-down-inner
+      //-     li
+      //-       a(href='#') PAGE 1
+      //-     li
+      //-       a(href='#') PAGE 2
+      li
+        a(href='/about.html') ABOUT
     .clearfix
 
 block content
@@ -100,22 +96,14 @@ footer.bg-191.color-ccc
 
     .brdr-ash-1.opacty-2
     .oflow-hidden.color-ash.font-9.text-sm-center.ptb-sm-5
-      //- ul.float-left.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-10
-      //-   li
-      //-     a.pl-0.pl-sm-10(href='#') Terms &amp; Conditions
-      //-   li
-      //-     a(href='#') Privacy policy
-      //-   li
-      //-     a(href='#') Jobs advertising
-      //-   li
-      //-     a(href='#') Contact us
+      ul.float-left.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-10
+        li
+          a.pl-0.pl-sm-10(href='/about.html') About
       ul.float-right.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-5
         li
           a(href='https://twitter.com/' + twitter)
             i.ion-social-twitter
-    // oflow-hidden
-  // container
-// SCIPTS
+
 script(src='/plugin-frameworks/jquery-3.2.1.min.js')
 script(src='/plugin-frameworks/tether.min.js')
 script(src='/plugin-frameworks/bootstrap.js')

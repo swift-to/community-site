@@ -1,0 +1,17 @@
+- image: /images/swift-to-frank-talk.jpg
+  url: https://vimeo.com/showcase/swiftto-conf-2019
+  title: Watch the Swift TO Videos Now
+  author: Swift TO Conference
+  date: Aug 13, 2019
+
+- image: /images/swift-to-stickers.jpg
+  url: https://www.flickr.com/photos/183435217@N05/sets/72157710432546731/ 
+  title: Check out the photos from our conference
+  author: Swift TO Conference
+  date: Aug 13, 2019
+
+- image: https://secure.meetupstatic.com/photos/event/2/1/7/7/highres_484988567.jpeg
+  url: https://www.meetup.com/NSCoderTO/events/264894367/
+  title: Video Night - Test-Driven Reactive Programming
+  author: NSCoder Toronto
+  date: Sep 26, 2019
