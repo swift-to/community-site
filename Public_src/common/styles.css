@@ -123,7 +123,7 @@ header .logo{ float: left; height: 48px; margin: 28px 0 0; }
 header .logo img{ height: 100%; width: auto; }
 
 
-header .main-menu{ float: right; }
+header .main-menu{ float: right; text-transform: uppercase; }
 
 header ul.main-menu > li > a{ height: 100%; line-height: 80px; padding: 0px 15px; }
 
@@ -1962,4 +1962,7 @@ section{ margin: 40px 0; }
 	
 }
 
-
+a.opacity-hover:hover h4 {
+	text-decoration: underline;
+	/* opacity: 0.80; */
+}

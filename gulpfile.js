@@ -12,6 +12,7 @@ const pug = require('pug');
 const gulpPug = require('gulp-pug');
 const fs = require('fs');
 const yaml = require('yaml');
+let RssParser = require('rss-parser');
 
 const Vimeo = require('./tasks/vimeo');
 const swiftTOConf2019Album = 6225806;
@@ -21,11 +22,14 @@ const sourceRoot = './Public_src/';
 const publicRoot = './Public/';
 const videoFolder = publicRoot + 'video/';
 
-const siteConfigFile = fs.readFileSync('./site-config.yml', 'utf8')
-const siteConfig = yaml.parse(siteConfigFile)
+const siteConfigFile = fs.readFileSync('./site-config.yml', 'utf8');
+const siteConfig = yaml.parse(siteConfigFile);
 
-const headlinesFile = fs.readFileSync('./data/headlines.yml', 'utf8')
-siteConfig.headlines = yaml.parse(headlinesFile)
+const headlinesFile = fs.readFileSync('./data/headlines.yml', 'utf8');
+siteConfig.headlines = yaml.parse(headlinesFile);
+
+const rssFeedsFile = fs.readFileSync('./data/rss-blogs.yml', 'utf8');
+const rssFeeds = yaml.parse(rssFeedsFile);
 
 gulp.task('fetchVimeoVideos', () => {
 
@@ -42,6 +46,43 @@ gulp.task('fetchVimeoVideos', () => {
 		}).then((videos) => {
 			siteConfig.communityVideos = videos
 		});
+});
+
+gulp.task('parseBlogs', () => {
+	
+	const descDate = (a, b) => {
+		return (a.date > b.date) ? -1 : ((a.date < b.date) ? 1 : 0);
+	};
+
+	const truncateString = (str, num) => {
+		if (str.length <= num) {
+	  		return str
+		}
+		return str.slice(0, num) + '...'
+  	}
+
+	let parser = new RssParser();
+	let blogs = [];
+	return Promise.all(rssFeeds.map(feedUrl => parser.parseURL(feedUrl)))
+	.then(feeds => {
+		feeds.forEach(feed => {
+			const feedHostname = new URL(feed.link).hostname;
+			feed.items.forEach(item => {
+				console.log(item.title + ' - ' + feedHostname);
+				const entry = {
+				  siteTitle: feed.title,
+				  hostName: feedHostname,
+				  postTitle: item.title,
+				  date: item.isoDate,
+				  url: item.link,
+				  excerpt: truncateString(item.contentSnippet, 300),
+				  author: item.creator || feed.title
+				};
+				blogs.push(entry);
+			  });
+		});
+		siteConfig.blogs = blogs.sort(descDate).slice(0, 10);
+	});
 });
 
 gulp.task('copyFonts', () => {
@@ -85,7 +126,7 @@ const writeVideosPages = () => {
 	fs.writeFileSync(`${publicRoot}videoCache.json`, JSON.stringify(allVideos, null, 2));
 };
 
-gulp.task('html', ['fetchVimeoVideos'], () => {
+gulp.task('html', ['fetchVimeoVideos', 'parseBlogs'], () => {
 	writeVideosPages();
 	return gulp.src(sourceRoot + '/views/**.pug')
 		.pipe(plumber())

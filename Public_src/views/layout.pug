@@ -1,3 +1,5 @@
+- const nav = [{title: "Home", url: "/"}, {title: "Blogs", url: "/blogs.html"}, {title: "About", url: "/about.html"}]
+
 doctype html
 head
   title=title
@@ -11,61 +13,15 @@ head
   link(href='/fonts/ionicons.css' rel='stylesheet')
   link(href='/common/styles.css' rel='stylesheet')
 header
-  //- .bg-191
-  //-   .container
-  //-     .oflow-hidden.color-ash.font-9.text-sm-center.ptb-sm-5
-  //-       ul.float-left.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-10
-  //-         li
-  //-           a.pl-0.pl-sm-10(href='#') About
-  //-         li
-  //-           a(href='#') Advertise
-  //-         li
-  //-           a(href='#') Submit Press Release
-  //-         li
-  //-           a(href='#') Contact
-  //-       ul.float-right.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-5
-  //-         li
-  //-           a.pl-0.pl-sm-10(href='#')
-  //-             i.ion-social-facebook
-  //-         li
-  //-           a(href='#')
-  //-             i.ion-social-twitter
-  //-         li
-  //-           a(href='#')
-  //-             i.ion-social-google
-  //-         li
-  //-           a(href='#')
-  //-             i.ion-social-instagram
-  //-         li
-  //-           a(href='#')
-  //-             i.ion-social-bitcoin
   .container
     a.logo(href='/index.html')
       img(src='/images/swiftTOtall.png' alt='Logo')
-    //- a.right-area.src-btn(href='#')
-    //-   i.active.src-icn.ion-search
-    //-   i.close-icn.ion-close
-    //- .src-form
-    //-   form
-    //-     input(type='text' placeholder='Search here')
-    //-     button(type='submit')
-    //-       i.ion-search
     a.menu-nav-icon(data-menu='#main-menu' href='#')
       i.ion-navicon
     ul#main-menu.main-menu
-      //- li
-      //-   a(href='02_archive-page.html') NEWS
-      //- li.drop-down
-      //-   a(href='03_single-post.html')
-      //-     | GUIDES &amp; ANALYTICS
-      //-     i.ion-arrow-down-b
-      //-   ul.drop-down-menu.drop-down-inner
-      //-     li
-      //-       a(href='#') PAGE 1
-      //-     li
-      //-       a(href='#') PAGE 2
-      li
-        a(href='/about.html') ABOUT
+      each item in nav
+        li
+          a(href=item.url)=item.title
     .clearfix
 
 block content
@@ -73,14 +29,9 @@ block content
 footer.bg-191.color-ccc
   .container
     .pt-50.pb-20.pos-relative
-      //- .abs-tblr.pt-50.z--1.text-center
-      //-   .h-80.pos-relative
-      //-     img.opacty-1.h-100.w-auto(src='images/map.png' alt='')
       .row
         .col-sm-4
           .mb-30
-            //- a(href='#V')
-            //-   img(src='images/logo-white.png')
             p.mtb-20.color-ccc
               | Swift TO is a non-profit dedicated to being at the forefront of Swift community development in Toronto
             p.color-ash
@@ -97,8 +48,9 @@ footer.bg-191.color-ccc
     .brdr-ash-1.opacty-2
     .oflow-hidden.color-ash.font-9.text-sm-center.ptb-sm-5
       ul.float-left.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-10
-        li
-          a.pl-0.pl-sm-10(href='/about.html') About
+        each item in nav
+          li
+            a.pl-0.pl-sm-10(href=item.url)=item.title
       ul.float-right.float-sm-none.list-a-plr-10.list-a-plr-sm-5.list-a-ptb-15.list-a-ptb-sm-5
         li
           a(href='https://twitter.com/' + twitter)
