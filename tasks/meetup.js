@@ -20,7 +20,6 @@ class Meetup {
             })
             .sort(descDate)
             .map(event => {
-                const startMoment = moment(event.startDate)
                 event.startDate = moment(event.startDate).format('LL')
                 return event
             })

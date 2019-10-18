@@ -31,7 +31,7 @@ block content
                 i.color-primary.ion-ios-calendar.mr-10
                 b UPCOMING EVENTS
               each event in events
-                a.oflow-hidden.pos-relative.mb-20.dplay-block(href=event.url)
+                a.oflow-hidden.pos-relative.mb-20.dplay-block(href=event.url, target="_blank")
                   //- .wh-100x.abs-tlr
                   //-   img(src=event.organization.image alt='')
                   .min-h-100x
@@ -45,13 +45,13 @@ block content
                       span.color-black
                         b=event.organization.name
 
-            .mtb-50.mb-md-0
-              h4.p-title
-                i.color-primary.ion-ios-paper.mr-10
-                b NEWSLETTER
-              p.mb-20
-                | Subscribe to our newsletter to get notifications about new updates &amp; events.
-              form.nwsltr-primary-1
-                input(type='text' placeholder='Your email')
-                button(type='submit')
-                  i.ion-ios-paperplane
+            //- .mtb-50.mb-md-0
+            //-   h4.p-title
+            //-     i.color-primary.ion-ios-paper.mr-10
+            //-     b NEWSLETTER
+            //-   p.mb-20
+            //-     | Subscribe to our newsletter to get notifications about new updates &amp; events.
+            //-   form.nwsltr-primary-1
+            //-     input(type='text' placeholder='Your email')
+            //-     button(type='submit')
+            //-       i.ion-ios-paperplane

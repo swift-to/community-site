@@ -12,10 +12,11 @@ const pug = require('pug');
 const gulpPug = require('gulp-pug');
 const fs = require('fs');
 const yaml = require('yaml');
-let RssParser = require('rss-parser');
 
 const Vimeo = require('./tasks/vimeo');
 const Meetup = require('./tasks/meetup');
+const RSS = require('./tasks/rss');
+
 const swiftTOConf2019Album = 6225806;
 const communityContentAlbum = 6288370;
 
@@ -54,7 +55,7 @@ gulp.task('fetchVimeoVideos', () => {
 
 gulp.task('fetchLocalEvents', () => {
 	let meetup = new Meetup();
-	meetup.fetchAllOrganizationEvents(meetupGroups).then(events => {
+	return meetup.fetchAllOrganizationEvents(meetupGroups).then(events => {
 		console.log('Upcoming events')
 		console.log(events.map(e => e /*`${e.name} ${e.startDate} - ${e.organization.name}`*/))
 		siteConfig.events = events
@@ -62,40 +63,11 @@ gulp.task('fetchLocalEvents', () => {
 })
 
 gulp.task('parseBlogs', () => {
-	
-	const descDate = (a, b) => {
-		return (a.date > b.date) ? -1 : ((a.date < b.date) ? 1 : 0);
-	};
-
-	const truncateString = (str, num) => {
-		if (str.length <= num) {
-	  		return str
-		}
-		return str.slice(0, num) + '...'
-  	}
-
-	let parser = new RssParser();
-	let blogs = [];
-	return Promise.all(rssFeeds.map(feedUrl => parser.parseURL(feedUrl)))
-	.then(feeds => {
-		feeds.forEach(feed => {
-			const feedHostname = new URL(feed.link).hostname;
-			feed.items.forEach(item => {
-				console.log(item.title + ' - ' + feedHostname);
-				const entry = {
-				  siteTitle: feed.title,
-				  hostName: feedHostname,
-				  postTitle: item.title,
-				  date: item.isoDate,
-				  url: item.link,
-				  excerpt: truncateString(item.contentSnippet, 300),
-				  author: item.creator || feed.title
-				};
-				blogs.push(entry);
-			  });
-		});
-		siteConfig.blogs = blogs.sort(descDate).slice(0, 10);
-	});
+	let rss = new RSS();
+	return rss.fetchFeeds(rssFeeds)
+	.then(blogs => {
+        siteConfig.blogs = blogs
+	})
 });
 
 gulp.task('copyFonts', () => {
