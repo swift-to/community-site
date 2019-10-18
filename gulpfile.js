@@ -15,6 +15,7 @@ const yaml = require('yaml');
 let RssParser = require('rss-parser');
 
 const Vimeo = require('./tasks/vimeo');
+const Meetup = require('./tasks/meetup');
 const swiftTOConf2019Album = 6225806;
 const communityContentAlbum = 6288370;
 
@@ -30,6 +31,9 @@ siteConfig.headlines = yaml.parse(headlinesFile);
 
 const rssFeedsFile = fs.readFileSync('./data/rss-blogs.yml', 'utf8');
 const rssFeeds = yaml.parse(rssFeedsFile);
+
+const meetupGroupsFile = fs.readFileSync('./data/meetup-groups.yml', 'utf8');
+const meetupGroups = yaml.parse(meetupGroupsFile);
 
 gulp.task('fetchVimeoVideos', () => {
 
@@ -47,6 +51,15 @@ gulp.task('fetchVimeoVideos', () => {
 			siteConfig.communityVideos = videos
 		});
 });
+
+gulp.task('fetchLocalEvents', () => {
+	let meetup = new Meetup();
+	meetup.fetchAllOrganizationEvents(meetupGroups).then(events => {
+		console.log('Upcoming events')
+		console.log(events.map(e => e /*`${e.name} ${e.startDate} - ${e.organization.name}`*/))
+		siteConfig.events = events
+	})
+})
 
 gulp.task('parseBlogs', () => {
 	
@@ -126,7 +139,7 @@ const writeVideosPages = () => {
 	fs.writeFileSync(`${publicRoot}videoCache.json`, JSON.stringify(allVideos, null, 2));
 };
 
-gulp.task('html', ['fetchVimeoVideos', 'parseBlogs'], () => {
+gulp.task('html', ['fetchVimeoVideos', 'parseBlogs', 'fetchLocalEvents'], () => {
 	writeVideosPages();
 	return gulp.src(sourceRoot + '/views/**.pug')
 		.pipe(plumber())

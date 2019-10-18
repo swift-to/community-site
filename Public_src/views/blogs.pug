@@ -30,18 +30,20 @@ block content
               h4.p-title
                 i.color-primary.ion-ios-calendar.mr-10
                 b UPCOMING EVENTS
-              a.oflow-hidden.pos-relative.mb-20.dplay-block(href='https://www.meetup.com/NSCoderTO/events/264894367/')
-                .wh-100x.abs-tlr
-                  img(src='https://secure.meetupstatic.com/photos/event/2/1/7/7/highres_484988567.jpeg' alt='')
-                .ml-120.min-h-100x
-                  h5
-                    b Video Night - Test-Driven Reactive Programming
-                  h6.mt-10 
-                    b Thu Sept 26, 2019
-                  h6.color-lite-black.pt-10
-                    | by 
-                    span.color-black
-                      b NSCoder Toronto
+              each event in events
+                a.oflow-hidden.pos-relative.mb-20.dplay-block(href=event.url)
+                  //- .wh-100x.abs-tlr
+                  //-   img(src=event.organization.image alt='')
+                  .min-h-100x
+                    h5
+                      i.color-primary.ion-ios-calendar-outline.mr-10
+                      b=event.name
+                    h6.mt-10 
+                      b=event.startDate
+                    h6.color-lite-black.pt-10
+                      | by 
+                      span.color-black
+                        b=event.organization.name
 
             .mtb-50.mb-md-0
               h4.p-title
